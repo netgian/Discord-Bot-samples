@@ -64,8 +64,8 @@ async def serverinfo(ctx):
     embed.add_field(name="Boosting Level:", value=f"[{guild.premium_tier}]", inline=True)
     embed.add_field(name="Created at:", value=guild.created_at.strftime("%d/%m/%Y"), inline=True)
     embed.add_field(name="Roles:", value=str(len(guild.roles)), inline=True)
-    embed.add_field(name="Members:", value=f"{usuarios} usuarios\n{bots} bots", inline=True)
-    embed.add_field(name="Channels:", value=f"{textC} de Texto\n{voiceC} de Voz", inline=True)
+    embed.add_field(name="Members:", value=f"{usuarios} users\n{bots} bots", inline=True)
+    embed.add_field(name="Channels:", value=f"{textC} text\n{voiceC} voice", inline=True)
     embed.add_field(name="Verification:", value=guild.verification_level, inline=True)
     embed.add_field(name="Emojis:", value=str(len(guild.emojis)), inline=True)
     embed.add_field(name="Region:", value=guild.region, inline=True)
@@ -75,21 +75,21 @@ async def serverinfo(ctx):
 @bot.command(name='roleinfo')
 async def roleinfo(ctx, role: discord.Role = discord.Role):
     if role == discord.role.Role:
-        await ctx.send("Etiqueta un rol para mostrar su información :)")
+        await ctx.send("You have to put a role")
     else:
         guild = ctx.author.guild
         perm = ', '.join([str(p[0]).replace("_", " ").title() for p in role.permissions if p[1]])
         perm = "Administrator" if "Administrator" in perm else perm
         embed = discord.Embed(colour=discord.Color.blurple(), timestamp=ctx.message.created_at)
 
-        embed.add_field(name="Nombre:", value=f"{role.mention}", inline=False)
+        embed.add_field(name="Name:", value=f"{role.mention}", inline=False)
         embed.add_field(name="ID:", value=f"{role.id}", inline=False)
         embed.add_field(name="Created at ", value=role.created_at.strftime("%#d/%m/%Y, %I:%M %p"), inline=False)
-        embed.add_field(name="Permisos:", value=f"{perm}", inline=False)
+        embed.add_field(name="Permissions:", value=f"{perm}", inline=False)
 
         embed.set_author(name="»▬«Role info»▬«")
         embed.set_thumbnail(url=guild.icon_url)
-        embed.set_footer(text=f"Solicitado por:  {ctx.author}", icon_url=ctx.author.avatar_url)
+        embed.set_footer(text=f"Asked for:  {ctx.author}", icon_url=ctx.author.avatar_url)
 
         await ctx.send(embed=embed)
 
