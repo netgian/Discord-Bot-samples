@@ -84,10 +84,7 @@ async def roleinfo(ctx, role: discord.Role = discord.Role):
 
         embed.add_field(name="Nombre:", value=f"{role.mention}", inline=False)
         embed.add_field(name="ID:", value=f"{role.id}", inline=False)
-        embed.add_field(
-            name="Creado el ",
-            value=role.created_at.strftime("%#d/%m/%Y, %I:%M %p"),
-            inline=False)
+        embed.add_field(name="Created at ", value=role.created_at.strftime("%#d/%m/%Y, %I:%M %p"), inline=False)
         embed.add_field(name="Permisos:", value=f"{perm}", inline=False)
 
         embed.set_author(name="»▬«Role info»▬«")
